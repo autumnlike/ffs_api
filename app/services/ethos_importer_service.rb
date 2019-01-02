@@ -6,16 +6,16 @@ class EthosImporterService
   def self.import(file_name)
     encoding = "UTF-8"
     row = 1
-    begin
+    ActiveRecord::Base.transaction do
       CSV.foreach(file_name, headers: true, encoding: encoding) do | data |
         row += 1
         data = shaping data
         user = User.create_by_ethos! data
         user_ffs = UserFFS.create_by_ethos! data, user.id
       end
-    rescue => e
-      fail "#{row}行目でエラーが発生しました。[#{e.message}]"
     end
+  rescue => e
+    fail "#{row}行目でエラーが発生しました。[#{e.message}]"
   end
 
   # CSV値の整形
