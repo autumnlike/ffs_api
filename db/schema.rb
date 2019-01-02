@@ -21,7 +21,8 @@ ActiveRecord::Schema.define(version: 2019_01_01_111648) do
   end
 
   create_table "ffs_type_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "91Type 説明", force: :cascade do |t|
-    t.string "type", comment: "91Type名, Ex: ACB, BC, D等"
+    t.string "4_type", comment: "4タイプ分類, Ex: TG, AN等"
+    t.string "91_type", comment: "91タイプ分類, Ex: ACB, BC, D等"
     t.string "description", comment: "タイプでの説明"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,13 +35,14 @@ ActiveRecord::Schema.define(version: 2019_01_01_111648) do
     t.integer "c", comment: "弁別性"
     t.integer "d", comment: "拡散性"
     t.integer "e", comment: "保全性"
-    t.string "type", comment: "91types"
+    t.string "4_type", comment: "4タイプ分類, Ex: TG, AN等"
+    t.string "91_type", comment: "91タイプ分類, Ex: ACB, BC, D等"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "key", comment: "社員番号等のキー値"
+    t.string "key", comment: "社員番号等のキー値"
     t.string "name", comment: "名前"
     t.string "name_en", comment: "英語名"
     t.string "email", comment: "メールアドレス"
