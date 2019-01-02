@@ -1,5 +1,5 @@
 # bundle exec rake import_user_ffs:ethos_format
-namespace :impoort_user_ffs do
+namespace :import_user_ffs do
   desc "ETHOS から エクスポートしたCSVファイルからユーザー情報を読み込む"
   task :by_ethos => :environment do
     filepath = "#{Rails.root}/tmp/*.csv"
