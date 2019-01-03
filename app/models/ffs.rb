@@ -1,0 +1,2 @@
+class FFS < ApplicationRecord
+end
