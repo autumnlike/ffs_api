@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+  has_one :user_ffs, class_name: "UserFFS"
 
   def self.create_by_ethos!(data)
     u = new_by_ethos(data)
