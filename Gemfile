@@ -40,6 +40,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # .env
+gem 'dotenv-rails'
+# settings
 gem 'config'
 
 # Reduces boot times through caching; required in config/boot.rb

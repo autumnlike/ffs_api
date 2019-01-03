@@ -84,6 +84,10 @@ GEM
     deep_merge (1.2.1)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
+    dotenv (2.5.0)
+    dotenv-rails (2.5.0)
+      dotenv (= 2.5.0)
+      railties (>= 3.2, < 6.0)
     dry-configurable (0.7.0)
       concurrent-ruby (~> 1.0)
     dry-container (0.6.0)
@@ -258,6 +262,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   config
+  dotenv-rails
   grape
   grape-entity
   jbuilder (~> 2.5)
