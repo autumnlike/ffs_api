@@ -3,13 +3,9 @@ class CreateBaseTables < ActiveRecord::Migration[5.2]
     create_table :ffs, comment: 'FFS各因子詳細' do |t|
       t.string :label, comment: '記号'
       t.string :name, comment: '名前'
-      t.string :description, comment: '詳細'
-      t.timestamps
-    end
-    create_table :ffs_type_infos, comment: '91Type 説明' do |t|
-      t.string :'4_type', comment: '4タイプ分類, Ex: TG, AN等'
-      t.string :'91_type', comment: '91タイプ分類, Ex: ACB, BC, D等'
-      t.string :description, comment: 'タイプでの説明'
+      t.string :overview, comment: '詳細'
+      t.string :long_description, comment: '91タイプ分類が1因子だけの場合の長めの説明'
+      t.string :short_description, comment: '91タイプ分類が2因子以上の場合の短めの説明'
       t.timestamps
     end
     create_table :users do |t|
