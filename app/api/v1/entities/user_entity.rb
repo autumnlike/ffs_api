@@ -6,15 +6,7 @@ module V1
       expose :name
       expose :name_en
       expose :email
-      expose :user_ffs do
-        expose :a
-        expose :b
-        expose :c
-        expose :d
-        expose :e
-        expose :'4_type'
-        expose :'91_type'
-      end
+      expose :user_ffs, using: V1::Entities::UserFFSEntity
     end
   end
 end
