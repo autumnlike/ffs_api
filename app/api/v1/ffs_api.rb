@@ -9,7 +9,7 @@ module V1
 
       desc ''
       post '/test' do
-				"It's 80 degrees right now."
+				SlackService::attachments_by_user(User.find(1)).to_json
       end
     end
   end
