@@ -9,7 +9,7 @@ module V1
 
       desc ''
       post '/test' do
-				SlackService::attachments_by_user(User.find(1)).to_json
+				SlackService::attachments_by_user(User.find(1))
       end
     end
   end
