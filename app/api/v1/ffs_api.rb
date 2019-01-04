@@ -8,7 +8,7 @@ module V1
       end
 
       desc ''
-      get '/test' do
+      post '/test' do
 				"It's 80 degrees right now."
       end
     end
