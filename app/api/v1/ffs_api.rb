@@ -9,14 +9,7 @@ module V1
 
       desc ''
       get '/test' do
-				{
-						text: "It's 80 degrees right now.",
-						attachments: [
-								{
-										text:"Partly cloudy today and tomorrow"
-								}
-						]
-				}.to_json
+				"It's 80 degrees right now."
       end
     end
   end
