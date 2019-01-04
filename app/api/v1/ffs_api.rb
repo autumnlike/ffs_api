@@ -16,7 +16,7 @@ module V1
 										text:"Partly cloudy today and tomorrow"
 								}
 						]
-				}
+				}.to_json
       end
     end
   end
