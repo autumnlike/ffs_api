@@ -9,9 +9,24 @@ module V1
 
       desc ''
       post '/test' do
+        member = []
+        members = Slack.users_list['members'].each do |m|
+          if m['profile']['display_name'] == params[:text]
+            member = m
+            break
+          end
+        end
+
+        # 一致しない場合
+        return "#{params[:text]} はいません" if member.empty?
+
+        user = User.find_by email: member['profile']['email']
+
+        # 一致しない場合
+        return "#{params[:text]} はいましたが、登録されているメールアドレスが違うようです。問合せてください。" if user.nil?
+
         {
-          text: 'success',
-          attachments: SlackService::attachments_by_user(User.find(1))
+          attachments: SlackService::attachments_by_user(user)
         }
       end
     end
