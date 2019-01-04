@@ -23,7 +23,7 @@ module V1
         user = User.find_by email: member['profile']['email']
 
         # 一致しない場合
-        return "#{params[:text]} はいましたが、登録されているメールアドレスが違うようです。問合せてください。" if user.nil?
+        return "#{params[:text]} はいましたが、登録されているメールアドレスが違うようです。(#{member['profile']['email']}) 問合せてください。" if user.nil?
 
         {
           attachments: SlackService::attachments_by_user(user)
