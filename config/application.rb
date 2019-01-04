@@ -15,7 +15,7 @@ module FfsApi
     config.api_only = true
 
     # API のみなのでassets 不要
-    config.assets.enabled = false
+    config.assets.precompile = []
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
