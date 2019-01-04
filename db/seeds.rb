@@ -21,5 +21,7 @@ UserFFS.create(
   b: 15,
   c: 9,
   d: 11,
-  e: 11
+  e: 11,
+  "4_type": "ML",
+  "91_type": "BED",
 )
