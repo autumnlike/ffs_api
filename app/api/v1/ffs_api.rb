@@ -8,7 +8,7 @@ module V1
       end
 
       desc ''
-      get '/test' do
+      post '/test' do
         {
           text: 'success',
           attachments: SlackService::attachments_by_user(User.find(1))
