@@ -11,7 +11,7 @@ module V1
       post '/test' do
         member = []
         members = Slack.users_list['members'].each do |m|
-          if m['profile']['display_name'] == params[:text]
+          if m['profile']['display_name'] == params[:text].sub(/@/, '')
             member = m
             break
           end
