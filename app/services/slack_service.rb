@@ -8,7 +8,7 @@ class SlackService
 
   def self.attachments_by_user(user)
     ffs = user.user_ffs # short
-    attachments = [
+    attachments = {
       # google グラフ image API はサポート外だが、便利なので使う
       # @see https://developers.google.com/chart/image/docs/chart_params#gcharts_chs
       image_url: "https://chart.googleapis.com/chart?chs=200x200&cht=bvs&chd=t:#{ffs.a},#{ffs.b},#{ffs.c},#{ffs.d},#{ffs.e}&chds=a&chxt=x,y&chm=N,000000,0,-1,11&chxl=0:|A|B|C|D|E|",
@@ -31,6 +31,6 @@ class SlackService
       ],
       title: "FFS 一覧",
       title_link: "https://goo.gl/mxU3Hh"
-    ]
+    }
   end
 end
