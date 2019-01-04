@@ -14,6 +14,9 @@ module FfsApi
     # API MODE 後付け
     config.api_only = true
 
+    # API のみなのでassets 不要
+    config.assets.enabled = false
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
