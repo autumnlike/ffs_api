@@ -27,6 +27,6 @@ test:
 production:
   <<: *default
   database: ffs_api_production
-  host: <%= ENV['PRODUCTION_DATABASE_URL'] ?>
+  host: <%= ENV['PRODUCTION_DATABASE_URL'] %>
   username: <%= ENV['PRODUCTION_DATABASE_USERNAME'] %>
   password: <%= ENV['PRODUCTION_DATABASE_PASSWORD'] %>
