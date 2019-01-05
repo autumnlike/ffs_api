@@ -41,7 +41,7 @@ module V1
       post '/my' do
         error!('401 Unauthorized', 401) if params[:token] != ENV['API_TOKEN']
         result = Slack.users_info(user: params[:user_id])
-        error!('404 Not Found', 404) unless result['ok']
+        error!("404 Not Found #{params[:user_id]}", 404) unless result['ok']
         user = User.find_by email: result['user']['profile']['email']
         {
           attachments: SlackService::attachments_by_user(user)
