@@ -12,13 +12,11 @@ module V1
       post '/user' do
         error!('401 Unauthorized', 401) if params[:token] != ENV['API_TOKEN']
         name = params[:text].gsub(/[@.]/, '')
-        member = []
-        members = Slack.users_list['members'].each do |m|
+        member = {}
+        Slack.users_list['members'].each do |m|
           # @akiyoshi.satoshi -> akiyoshisatoshiにして検索
-          if m['profile']['display_name'].gsub(/[.]/, '') == name
-            member = m
-            break
-          elsif m['profile']['email'].split('@').first.gsub(/[.]/, '') == name
+          if m['profile']['display_name'].gsub(/[.]/, '').index(name).present? ||
+            (m['profile']['email'].present? && m['profile']['email'].gsub(/[.]/, '').index(name).present?)
             member = m
             break
           end
@@ -32,7 +30,7 @@ module V1
         # 一致しない場合
         return "#{params[:text]} はいましたが、登録されているメールアドレスが違うようです。(#{member['profile']['email']}) 問合せてください。" if user.nil?
 
-        user = User.find 1
+        user = User.find_by email: member['profile']['email']
 
         {
           attachments: SlackService::attachments_by_user(user)
