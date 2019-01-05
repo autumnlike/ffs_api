@@ -1,4 +1,6 @@
 class UserFFS < ApplicationRecord
+  belongs_to :user
+
   validates :a, numericality:
     { greater_than_or_equal_to: 0, less_than_or_equal_to: 20, message: 'A因子は0-20で設定してください' }
   validates :b, numericality:

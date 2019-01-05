@@ -50,4 +50,21 @@ class SlackService
       title_link: "https://goo.gl/mxU3Hh"
     ]
   end
+
+  def self.attachments_by_same_user(user)
+    fields = []
+    UserFFS.where('91_type': user.user_ffs[:'91_type']).each do |d|
+      fields << {
+        title: "#{d.user.name} さん",
+        value: "`/ffs #{d.user.email.split('@').first}`",
+        short: true,
+      }
+    end
+    [
+      text: "あなたと同質である *#{user.user_ffs[:"91_type"]}* の一覧です。",
+      title_link: "https://goo.gl/mxU3Hh",
+      title: "全社のFFS診断結果はこちら",
+      fields: fields
+    ]
+  end
 end
