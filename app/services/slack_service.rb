@@ -15,9 +15,9 @@ class SlackService
       }
     end
     [
-      title: "FFS 因子説明",
+      text: "FFS 因子説明",
       title_link: "https://goo.gl/mxU3Hh",
-      text: "*全社ののFFS診断結果はこちら*",
+      title: "*全社のFFS診断結果はこちら*",
       fields: fields
     ]
   end
