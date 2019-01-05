@@ -21,7 +21,7 @@ module V1
         end
  
         # 一致しない場合
-        return "#{params[:text]} はいません" if member.empty?
+        return "#{params[:text]} はいません。firstname.lastname でお願いします。" if member.empty?
  
         user = User.find_by email: member['profile']['email']
  
