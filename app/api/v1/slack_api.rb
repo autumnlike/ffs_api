@@ -61,6 +61,14 @@ module V1
           attachments: SlackService::attachments_by_same_user(user)
         }
       end
+
+      desc '指定個性（91_type）のFFS結果を返す'
+      post '/user_type' do
+        error!('401 Unauthorized', 401) if params[:token] != ENV['API_TOKEN']
+        {
+          attachments: SlackService::attachments_by_91_type(params[:text])
+        }
+      end
     end
   end
 end

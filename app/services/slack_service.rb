@@ -67,4 +67,26 @@ class SlackService
       fields: fields
     ]
   end
+
+  def self.attachments_by_91_type(type)
+    fields = []
+    UserFFS.where('91_type': type).each do |d|
+      fields << {
+        title: "#{d.user.name} さん",
+        value: "`/ffs #{d.user.email.split('@').first}`",
+        short: true,
+      }
+    end
+    if fields.empty?
+      return [
+        text: "#{type} に該当する人はいませんでした"
+      ]
+    end
+    [
+      text: "*#{type}* の一覧です。",
+      title_link: "https://goo.gl/mxU3Hh",
+      title: "全社のFFS診断結果はこちら",
+      fields: fields
+    ]
+  end
 end
