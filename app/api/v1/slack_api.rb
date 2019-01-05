@@ -5,7 +5,9 @@ module V1
       desc 'ffs説明一覧を返す'
       post '/ffs' do
         error!('401 Unauthorized', 401) if params[:token] != ENV['API_TOKEN']
-        SlackService::attachments_by_ffs
+        {
+          attachments: SlackService::attachments_by_ffs
+        }
       end
 
       desc '指定ユーザのFFS結果を返す'
