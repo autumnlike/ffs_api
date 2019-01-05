@@ -1,6 +1,6 @@
 module V1
   # Slack コマンドリクエスト用
-  class Slack < Grape::API
+  class SlackApi < Grape::API
     resources :slack do
       desc 'ffs説明一覧を返す'
       post '/ffs' do

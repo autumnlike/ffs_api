@@ -3,7 +3,7 @@ module V1
     version :v1
     format :json
 
-    mount V1::Slack
+    mount V1::SlackApi
     # 使ってないので、一旦停止
     #mount V1::Users
     #mount V1::UserFFS
