@@ -11,17 +11,21 @@ module V1
       desc '指定ユーザのFFS結果を返す'
       post '/user' do
         error!('401 Unauthorized', 401) if params[:token] != ENV['API_TOKEN']
+        name = params[:text].gsub(/[@.]/, '')
         member = []
         members = Slack.users_list['members'].each do |m|
           # @akiyoshi.satoshi -> akiyoshisatoshiにして検索
-          if m['profile']['display_name'].gsub(/[@.]/, '') == params[:text].gsub(/[@.]/, '')
+          if m['profile']['display_name'].gsub(/[.]/, '') == name
+            member = m
+            break
+          elsif m['profile']['email'].split('@').first.gsub(/[.]/, '') == name
             member = m
             break
           end
         end
  
         # 一致しない場合
-        return "#{params[:text]} はいません。firstname.lastname でお願いします。" if member.empty?
+        return "#{name} はいません。検索フォーマットは <firstname.lastname> でお願いします。" if member.empty?
  
         user = User.find_by email: member['profile']['email']
  
