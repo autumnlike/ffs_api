@@ -3,6 +3,7 @@ module V1
     resources :user_ffs do
       desc 'returns matched users'
       get '/' do
+        error!('401 Unauthorized', 401) if params[:token] != ENV['API_TOKEN']
         @users = User.joins(:user_ffs).select("users.*, user_ffs.*")
 
         # 検索条件は排他とする
