@@ -6,6 +6,22 @@ class SlackService
     Slack.chat_postEphemeral(text: message, channel: channel, user: slack_user_id, attachments: attachments)
   end
 
+  def self.attachments_by_ffs
+    fields = []
+    FFS.all.each do |f|
+      fields << {
+        title: "#{f.label}: #{f.name}",
+        value: f.overview
+      }
+    end
+    [
+      title: "FFS 因子説明",
+      title_link: "https://goo.gl/mxU3Hh",
+      text: "*全社ののFFS診断結果はこちら*",
+      fields: fields
+    ]
+  end
+
   def self.attachments_by_user(user)
     ffs = user.user_ffs # short
     attachments = [
