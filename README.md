@@ -1,24 +1,40 @@
-# README
+# FFS API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+FFSを活用する便利な機能のAPI提供ツール
+しかし、時間の問題から、Slack との連携ツールにとどまっているのが現状。
 
-Things you may want to cover:
+## 環境構築
 
-* Ruby version
+1. Rails の通常の構築
+```
+$ git clone git@github.com:autumnlike/ffs_api.git
+$ bundle exec --path=/PATH/TO
 
-* System dependencies
+# DB
+$ ./bin/rails db:create
+$ ./bin/rails db:migrate
+$ ./bin/rails db:seed
 
-* Configuration
+# dotenv
+$ cp dotenv.sample .env
+$ vi .env # 適切な値に
+```
 
-* Database creation
+## API
 
-* Database initialization
+APIはすべて [apiary](https://sakiyoshi.docs.apiary.io/#reference/0/0) にて管理しているので、こちらを参照・更新してください。
 
-* How to run the test suite
+## 運用環境
 
-* Services (job queues, cache servers, search engines, etc.)
+[Heroku](https://dashboard.heroku.com/apps) にて運用中。
 
-* Deployment instructions
-
-* ...
+```
+# デプロイ
+$ git push heroku master
+# 起動
+$ heroku ps:scale web=1
+# 停止
+$ heroku ps:scale web=0
+# ログ
+$ heroku logs -t
+```
