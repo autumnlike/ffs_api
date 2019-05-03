@@ -13,26 +13,19 @@ module V1
       desc '指定ユーザのFFS結果を返す'
       post '/user' do
         error!('401 Unauthorized', 401) if params[:token] != ENV['API_TOKEN']
-        name = params[:text].gsub(/[@.]/, '')
-        member = {}
+        name = params[:text].gsub(/[@. ]/, '')
+        user = {}
         Slack.users_list['members'].each do |m|
           # @akiyoshi.satoshi -> akiyoshisatoshiにして検索
           if m['profile']['display_name'].gsub(/[.]/, '').index(name).present? ||
             (m['profile']['email'].present? && m['profile']['email'].gsub(/[.]/, '').index(name).present?)
-            member = m
-            break
+            user = User.find_by email: m['profile']['email']
+            break if user.present?
           end
         end
  
         # 一致しない場合
-        return "#{name} はいません。検索フォーマットは `<lastname.firstname>` でお願いします。" if member.empty?
- 
-        user = User.find_by email: member['profile']['email']
- 
-        # 一致しない場合
-        return "#{params[:text]} はいましたが、登録されているメールアドレスが違うようです。(#{member['profile']['email']}) 問合せてください。" if user.nil?
-
-        user = User.find_by email: member['profile']['email']
+        return "#{name} はいません。検索フォーマットは `<lastname.firstname>` でお願いします。" if user.blank?
 
         {
           attachments: SlackService::attachments_by_user(user)
