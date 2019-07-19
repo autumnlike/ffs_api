@@ -15,8 +15,7 @@ module FfsApi
     # API MODE 後付け
     config.api_only = true
 
-    # API のみなのでassets 不要
-    config.assets.precompile = []
+    config.middleware.use ActionDispatch::Flash
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
