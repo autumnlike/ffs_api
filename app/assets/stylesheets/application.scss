@@ -1,0 +1,73 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css";
+
+body {
+}
+
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.7rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.25rem;
+}
+h5 {
+  font-size: 1rem;
+}
+
+.navbar {
+  border-radius: 0;
+  position: fixed;
+}
+
+
+/**
+ * sidebar
+ */
+.container-fluid {
+  position: relative;
+  .sidebar {
+    border-radius: 0;
+    background-color: #f7f7f7;
+    color: #ccc;
+    border-left: 0;
+    border-right: 0;
+    border-color: #2c2c2c;
+    white-space: nowrap;
+    min-width: 200px;
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    // レイアウト構造的に、メインカラムがウインドウサイズ可変でかぶらないように
+    z-index: 1000;
+    padding: 20px 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: 1px solid #eee;
+
+    li .nav-link {
+      border-radius: 0;
+    }
+    a:hover {
+      background-color: #e2e2e2;
+    }
+  }
+  main {
+    margin-top: 50px;
+    h1 {
+      margin-bottom: 30px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid #eee;
+    }
+    .placeholders {
+      padding-bottom: 2rem;
+    }
+  }
+}

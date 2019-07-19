@@ -1,0 +1,23 @@
+%h1 ユーザー一覧
+%table.table.table-hover
+  %thead
+    %tr
+      %th 名前
+      %th A: 凝縮性
+      %th B: 受容性
+      %th C: 弁別性
+      %th D: 拡散性
+      %th E: 保全性
+      %th 4 Type
+      %th 91 Type
+  %tbody
+    - @users.each do |user|
+      %tr
+        %th= user.name
+        %td= user.user_ffs.a
+        %td= user.user_ffs.b
+        %td= user.user_ffs.c
+        %td= user.user_ffs.d
+        %td= user.user_ffs.e
+        %td= user.user_ffs['4_type']
+        %td= user.user_ffs['91_type']
