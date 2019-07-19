@@ -15,6 +15,7 @@ module FfsApi
     # API MODE 後付け
     config.api_only = true
 
+    # grape 使うと Flash使えないので明示指定
     config.middleware.use ActionDispatch::Flash
 
     # Settings in config/environments/* take precedence over those specified here.
