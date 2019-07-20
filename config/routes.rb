@@ -3,8 +3,11 @@ Rails.application.routes.draw do
 
   root 'members#index'
 
-  # ユーザー
+  # メンバー
   get '/members/index' => 'members#index'
+
+  # チーム
+  resources :teams
 
   # 説明系
   get '/infos/index' => 'infos#index'
