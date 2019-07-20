@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_19_162049) do
+ActiveRecord::Schema.define(version: 2019_07_20_190331) do
 
   create_table "ffs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "FFS各因子詳細", force: :cascade do |t|
     t.string "label", comment: "記号"
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 2019_07_19_162049) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_ffs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "member_ffs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "member_id"
     t.integer "a", comment: "凝縮性"
     t.integer "b", comment: "受容性"
     t.integer "c", comment: "弁別性"
@@ -35,15 +35,15 @@ ActiveRecord::Schema.define(version: 2019_07_19_162049) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_stresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "member_stresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "member_id"
     t.integer "point", comment: "ストレス値"
     t.date "diagnostic_at", comment: "診断日"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "key", comment: "社員番号等のキー値"
     t.string "name", comment: "名前"
     t.string "name_en", comment: "英語名"

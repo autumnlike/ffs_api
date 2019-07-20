@@ -1,6 +1,6 @@
 module V1
   module Entities
-    class UserFFSEntity < Grape::Entity
+    class MemberFFSEntity < Grape::Entity
       expose :a
       expose :b
       expose :c
