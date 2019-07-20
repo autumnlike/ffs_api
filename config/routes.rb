@@ -5,4 +5,7 @@ Rails.application.routes.draw do
 
   # ユーザー
   get '/users/index' => 'users#index'
+
+  # 説明系
+  get '/infos/index' => 'infos#index'
 end
