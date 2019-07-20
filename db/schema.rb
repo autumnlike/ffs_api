@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_01_111648) do
+ActiveRecord::Schema.define(version: 2019_07_19_162049) do
 
   create_table "ffs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "FFS各因子詳細", force: :cascade do |t|
     t.string "label", comment: "記号"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 2019_01_01_111648) do
     t.integer "e", comment: "保全性"
     t.string "4_type", comment: "4タイプ分類, Ex: TG, AN等"
     t.string "91_type", comment: "91タイプ分類, Ex: ACB, BC, D等"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_stresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "point", comment: "ストレス値"
+    t.date "diagnostic_at", comment: "診断日"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
