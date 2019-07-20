@@ -1,12 +1,12 @@
 module V1
   module Entities
-    class UserEntity < Grape::Entity
+    class MemberEntity < Grape::Entity
       expose :id
       expose :key
       expose :name
       expose :name_en
       expose :email
-      expose :user_ffs, using: V1::Entities::UserFFSEntity
+      expose :member_ffs, using: V1::Entities::MemberFFSEntity
     end
   end
 end

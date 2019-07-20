@@ -10,9 +10,9 @@ class EthosImporterService
       CSV.foreach(file_name, headers: true, encoding: encoding) do | data |
         row += 1
         data = shaping data
-        user = User.create_by_ethos! data
-        user_ffs = UserFFS.create_by_ethos! data, user.id
-        UserStress.create_by_ethos! data, user.id
+        member = Member.create_by_ethos! data
+        member_ffs = MemberFFS.create_by_ethos! data, member.id
+        MemberStress.create_by_ethos! data, member.id
       end
     end
   rescue => e

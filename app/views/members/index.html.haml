@@ -12,22 +12,22 @@
       %th= link_to "4 Type", infos_index_path(anchor: "4_type")
       %th ストレス
   %tbody
-    - @users.each do |user|
+    - @members.each do |member|
       %tr
         %td
-          = user.name
+          = member.name
           %br
-          %span.sub= (user.email)
-        %td= user.user_ffs.a
-        %td= user.user_ffs.b
-        %td= user.user_ffs.c
-        %td= user.user_ffs.d
-        %td= user.user_ffs.e
-        %td= user.user_ffs['91_type']
-        %td= user.user_ffs['4_type']
+          %span.sub= (member.email)
+        %td= member.member_ffs.a
+        %td= member.member_ffs.b
+        %td= member.member_ffs.c
+        %td= member.member_ffs.d
+        %td= member.member_ffs.e
+        %td= member.member_ffs['91_type']
+        %td= member.member_ffs['4_type']
         %td
           %ul.stresses
-            - user.user_stresses.each do |stress|
+            - member.member_stresses.each do |stress|
               %li
                 %span.main= stress.point
                 %span.sub= '[ ' + stress.diagnostic_at.strftime('%Y年%m月') + ' ]'

@@ -14,21 +14,21 @@ module V1
       post '/user' do
         error!('401 Unauthorized', 401) if params[:token] != ENV['API_TOKEN']
         name = params[:text].gsub(/[@. ]/, '')
-        user = {}
+        member = {}
         Slack.users_list['members'].each do |m|
           # @akiyoshi.satoshi -> akiyoshisatoshiにして検索
           if m['profile']['display_name'].gsub(/[.]/, '').index(name).present? ||
             (m['profile']['email'].present? && m['profile']['email'].gsub(/[.]/, '').index(name).present?)
-            user = User.find_by email: m['profile']['email']
-            break if user.present?
+            member = Member.find_by email: m['profile']['email']
+            break if member.present?
           end
         end
  
         # 一致しない場合
-        return "#{name} はいません。検索フォーマットは `<lastname.firstname>` でお願いします。" if user.blank?
+        return "#{name} はいません。検索フォーマットは `<lastname.firstname>` でお願いします。" if member.blank?
 
         {
-          attachments: SlackService::attachments_by_user(user)
+          attachments: SlackService::attachments_by_member(member)
         }
       end
 
@@ -37,9 +37,9 @@ module V1
         error!('401 Unauthorized', 401) if params[:token] != ENV['API_TOKEN']
         result = Slack.users_info(user: params[:user_id])
         error!("404 Not Found #{params[:user_id]}", 404) unless result['ok']
-        user = User.find_by email: result['user']['profile']['email']
+        member = Member.find_by email: result['user']['profile']['email']
         {
-          attachments: SlackService::attachments_by_user(user)
+          attachments: SlackService::attachments_by_member(member)
         }
       end
 
@@ -49,9 +49,9 @@ module V1
 
         result = Slack.users_info(user: params[:user_id])
         error!("404 Not Found #{params[:user_id]}", 404) unless result['ok']
-        user = User.find_by email: result['user']['profile']['email']
+        member = Member.find_by email: result['user']['profile']['email']
         {
-          attachments: SlackService::attachments_by_same_user(user)
+          attachments: SlackService::attachments_by_same_member(member)
         }
       end
 
