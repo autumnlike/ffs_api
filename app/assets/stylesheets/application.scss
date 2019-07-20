@@ -26,6 +26,30 @@ h5 {
   position: fixed;
 }
 
+.table {
+  tbody {
+    tr {
+      td {
+        span.sub {
+          font-size: 80%;
+          color: #999;
+        }
+        ul.stresses {
+          span.main {
+            width: 20px;
+            display: inline-block;
+            text-align: right;
+          }
+          span.sub {
+            font-size: 80%;
+            color: #999;
+          }
+        }
+      }
+    }
+  }
+}
+
 
 /**
  * sidebar

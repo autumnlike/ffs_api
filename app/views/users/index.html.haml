@@ -10,10 +10,14 @@
       %th E: 保全性
       %th 4 Type
       %th 91 Type
+      %th ストレス
   %tbody
     - @users.each do |user|
       %tr
-        %th= user.name
+        %td
+          = user.name
+          %br
+          %span.sub= (user.email)
         %td= user.user_ffs.a
         %td= user.user_ffs.b
         %td= user.user_ffs.c
@@ -21,3 +25,9 @@
         %td= user.user_ffs.e
         %td= user.user_ffs['4_type']
         %td= user.user_ffs['91_type']
+        %td
+          %ul.stresses
+            - user.user_stresses.each do |stress|
+              %li
+                %span.main= stress.point
+                %span.sub= '[ ' + stress.diagnostic_at.strftime('%Y年%m月') + ' ]'
