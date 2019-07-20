@@ -12,6 +12,7 @@ class EthosImporterService
         data = shaping data
         user = User.create_by_ethos! data
         user_ffs = UserFFS.create_by_ethos! data, user.id
+        UserStress.create_by_ethos! data, user.id
       end
     end
   rescue => e
