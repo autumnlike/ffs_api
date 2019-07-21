@@ -1,0 +1,35 @@
+%h1= @team.name
+
+%h2 メンバー追加
+= form_with model: @team_member, class: "form-inline mb-3", local: true do |form|
+  = form.hidden_field :team_id, value: @team.id
+  %div.form-group.mr-2.col-3
+    = form.text_field :member_id, class: "form-control w-100", placeholder: "メンバーの名前入力", list: 'list-name'
+    %datalist#list-name
+      - @all_members.each do |m|
+        %option{value: m.id, label: m.name + '/' + m.email}
+  = form.submit "メンバーを追加する",  class: "btn btn-primary"
+
+%h2 メンバー
+=render 'members/list_table', use_remove: true
+
+- if @team.members.present?
+  %h2 平均
+  %table.table.table-hover
+    %thead
+      %tr
+        %th A: 凝縮性
+        %th B: 受容性
+        %th C: 弁別性
+        %th D: 拡散性
+        %th E: 保全性
+        %th ストレス
+        %th
+    %tbody
+      %tr
+        %td= @team.a_avg
+        %td= @team.b_avg
+        %td= @team.c_avg
+        %td= @team.d_avg
+        %td= @team.e_avg
+        %td= @team.stress_avg

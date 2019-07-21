@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_20_190331) do
+ActiveRecord::Schema.define(version: 2019_07_20_194729) do
 
   create_table "ffs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "FFS各因子詳細", force: :cascade do |t|
     t.string "label", comment: "記号"
@@ -50,6 +50,23 @@ ActiveRecord::Schema.define(version: 2019_07_20_190331) do
     t.string "email", comment: "メールアドレス"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "team_members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "team_id", null: false
+    t.integer "member_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_team_members_on_member_id"
+    t.index ["team_id", "member_id"], name: "index_team_members_on_team_id_and_member_id", unique: true
+    t.index ["team_id"], name: "index_team_members_on_team_id"
+  end
+
+  create_table "teams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false, comment: "チーム名"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_teams_on_name", unique: true
   end
 
 end

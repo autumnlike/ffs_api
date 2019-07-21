@@ -4,6 +4,10 @@ class Member < ApplicationRecord
   has_one :member_ffs, class_name: "MemberFFS"
   has_many :member_stresses, -> { order('diagnostic_at DESC') }
 
+  def team_member(team_id)
+    TeamMember.find_by member_id: id, team_id: team_id
+  end
+
   def self.create_by_ethos!(data)
     m = new_by_ethos(data)
     m.save!

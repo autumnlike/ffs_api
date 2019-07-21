@@ -1,0 +1,24 @@
+%h1 チーム一覧
+
+- if @team.errors.any?
+  %div.alert.alert-danger
+    %ul
+      - @team.errors.messages.each do |k,msgs|
+        - msgs.each do |msg|
+          %li= msg
+
+= form_with model: @team, class: "form-inline mb-3", local: true do |form|
+  %div.form-group.mr-2
+    = form.text_field :name, class: "form-control", placeholder: "チーム名"
+  = form.submit "チームを作成する",  class: "btn btn-primary"
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th チーム名
+      %th メンバー
+  %tbody
+    - @teams.each do |team|
+      %tr
+        %td= link_to team.name, team_path(team.id)
+        %td= team.members.pluck(:name).join(' / ')
