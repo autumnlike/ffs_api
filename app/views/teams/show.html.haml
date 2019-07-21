@@ -11,10 +11,90 @@
   = form.submit "メンバーを追加する",  class: "btn btn-primary"
 
 %h2 メンバー
+
+%div.ml-5.mr-5
+  %canvas#memberLineChart{width: "400", height: "400"}
+
+- dataset = []
+- # FIXME ハードコーディングじゃなくいい感じに
+- colors = ['#a6cee3', '#b2df8a', '#e31a1c', '#fdbf6f', '#1f78b4', '#ff7f00', '#fb9a99', '#33a02c', '#cab2d6', '#6a3d9a', '#ffff99', '#b15928']
+- # Javascript用グラフ配列
+- @team.members.each do |m|
+  - dataset << {label: m.name + '(' + m.member_ffs['91_type'] + ')', data: [m.member_ffs.a, m.member_ffs.b, m.member_ffs.c, m.member_ffs.d, m.member_ffs.e], lineTension: 0, fill: false, backgroundColor: colors.first,  borderColor: colors.first}
+  - colors.delete(colors.first)
+
+:javascript
+  $(function() {
+    var datasets = #{dataset.to_json.html_safe};
+    var data = {
+      labels: ['A 凝縮性', 'B 受容性', 'C 弁別性', 'D 拡散性', 'E 保全性'],
+      datasets: datasets,
+    };
+    var ctx = document.getElementById("memberLineChart").getContext("2d");
+    var options = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            min: 0,
+            max: 20
+          }
+        }]
+      },
+      responsive: true,
+      maintainAspectRatio: false
+    };
+    var lineChart = new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: options
+    });
+    lineChart.canvas.parentNode.style.height = '400px';
+  });
+
 =render 'members/list_table', use_remove: true
 
 - if @team.members.present?
   %h2 平均
+  %div.ml-5.mr-5
+    %canvas#avgLineChart{width: "400", height: "400"}
+  :javascript
+    $(function() {
+      var datasets = #{dataset.to_json.html_safe};
+      var data = {
+        labels: ['A 凝縮性', 'B 受容性', 'C 弁別性', 'D 拡散性', 'E 保全性'],
+        datasets: [
+          {
+            label: '平均',
+            lineTension: 0,
+            fill: false,
+            backgroundColor: '#a6cee3',
+            borderColor: '#a6cee3',
+            data: [#{@team.a_avg}, #{@team.b_avg}, #{@team.c_avg}, #{@team.d_avg}, #{@team.e_avg}]
+          }
+       ]
+      };
+      var ctx = document.getElementById("avgLineChart").getContext("2d");
+      var options = {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              min: 0,
+              max: 20
+            }
+          }]
+        },
+        responsive: true,
+        maintainAspectRatio: false
+      };
+      var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: options
+      });
+      lineChart.canvas.parentNode.style.height = '400px';
+    });
   %table.table.table-hover
     %thead
       %tr
