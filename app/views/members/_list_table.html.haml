@@ -1,6 +1,8 @@
 - # デフォルト
 - # 削除列を用意
 - use_remove = defined?(use_remove) ? use_remove : false;
+- # ストレス表示
+- use_stress = defined?(use_stress) ? use_stress : false;
 
 %table.table.table-hover
   %thead
@@ -13,7 +15,8 @@
       %th E: 保全性
       %th 91 Type
       %th= link_to "4 Type", infos_index_path(anchor: "4_type")
-      %th ストレス
+      - if use_stress
+        %th ストレス
       - if use_remove
         %th 削除
   %tbody
@@ -30,12 +33,13 @@
         %td= member.member_ffs.e
         %td= member.member_ffs['91_type']
         %td= member.member_ffs['4_type']
-        %td
-          %ul.stresses
-            - member.member_stresses.each do |stress|
-              %li
-                %span.main= stress.point
-                %span.sub= '[ ' + stress.diagnostic_at.strftime('%Y年%m月') + ' ]'
+        - if use_stress
+          %td
+            %ul.stresses
+              - member.member_stresses.each do |stress|
+                %li
+                  %span.main= stress.point
+                  %span.sub= '[ ' + stress.diagnostic_at.strftime('%Y年%m月') + ' ]'
         - if use_remove
           %td
             =link_to '/team_members/' + String(member.team_member(@team.id).id) + '/delete', onclick: "return confirm('削除して良いですか？')" do
