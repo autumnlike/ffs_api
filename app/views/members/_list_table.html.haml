@@ -1,0 +1,42 @@
+- # デフォルト
+- # 削除列を用意
+- use_remove = defined?(use_remove) ? use_remove : false;
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th 名前
+      %th A: 凝縮性
+      %th B: 受容性
+      %th C: 弁別性
+      %th D: 拡散性
+      %th E: 保全性
+      %th 91 Type
+      %th= link_to "4 Type", infos_index_path(anchor: "4_type")
+      %th ストレス
+      - if use_remove
+        %th 削除
+  %tbody
+    - @members.each do |member|
+      %tr
+        %td
+          = member.name
+          %br
+          %span.sub= (member.email)
+        %td= member.member_ffs.a
+        %td= member.member_ffs.b
+        %td= member.member_ffs.c
+        %td= member.member_ffs.d
+        %td= member.member_ffs.e
+        %td= member.member_ffs['91_type']
+        %td= member.member_ffs['4_type']
+        %td
+          %ul.stresses
+            - member.member_stresses.each do |stress|
+              %li
+                %span.main= stress.point
+                %span.sub= '[ ' + stress.diagnostic_at.strftime('%Y年%m月') + ' ]'
+        - if use_remove
+          %td
+            =link_to '/team_members/' + String(member.team_member(@team.id).id) + '/delete', onclick: "return confirm('削除して良いですか？')" do
+              %span.glyphicon.glyphicon-trash{"aria-hidden": "true"}

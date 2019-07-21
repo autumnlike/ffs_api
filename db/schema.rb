@@ -53,10 +53,13 @@ ActiveRecord::Schema.define(version: 2019_07_20_194729) do
   end
 
   create_table "team_members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "team_id", null: false
     t.integer "member_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_team_members_on_member_id"
+    t.index ["team_id", "member_id"], name: "index_team_members_on_team_id_and_member_id", unique: true
+    t.index ["team_id"], name: "index_team_members_on_team_id"
   end
 
   create_table "teams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
