@@ -42,10 +42,12 @@ class TeamsController < ApplicationController
     end
   end
 
-  # DELETE /teams/1
-  # DELETE /teams/1.json
+  # FIXME DELETE にしたい
+  # GET /teams/1
+  # GET /teams/1.json
   def destroy
     @team.destroy
+    redirect_to teams_path
   end
 
   private

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   # チーム
   resources :teams
+  get '/teams/:id/delete' => 'teams#destroy'
+
   post '/team_members' => 'team_members#create'
   get '/team_members/:id/delete' => 'team_members#destroy'
 

@@ -1,6 +1,7 @@
 class Team < ApplicationRecord
   validates :name, presence: {message: 'チーム名を入力してください。'}
   validates :name, uniqueness: {message: 'すでに同じチーム名が存在します。'}
+  has_many :team_members, dependent: :destroy
 
   def members
     Member.where(id: TeamMember.where(team_id: id).pluck(:member_id))
