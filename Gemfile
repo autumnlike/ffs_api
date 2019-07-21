@@ -44,6 +44,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# グラフ chart js
+gem 'chart-js-rails'
+
 # .env
 gem 'dotenv-rails'
 # settings

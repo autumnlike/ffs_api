@@ -1,5 +1,7 @@
 {
   "name": "ffs_api",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "chart.js": "^2.7.1"
+  }
 }
