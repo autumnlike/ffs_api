@@ -16,7 +16,7 @@ class SlackService
     end
     [
       text: "FFS 因子説明",
-      title_link: "https://goo.gl/mxU3Hh",
+      title_link: ENV['DOMAIN'] + 'members/index',
       title: "全社のFFS診断結果はこちら",
       fields: fields
     ]
@@ -62,7 +62,7 @@ class SlackService
     end
     [
       text: "あなたと同質である *#{member.member_ffs[:"91_type"]}* の一覧です。",
-      title_link: "https://goo.gl/mxU3Hh",
+      title_link: ENV['DOMAIN'] + 'members/index',
       title: "全社のFFS診断結果はこちら",
       fields: fields
     ]
@@ -84,7 +84,7 @@ class SlackService
     end
     [
       text: "*#{type}* の一覧です。",
-      title_link: "https://goo.gl/mxU3Hh",
+      title_link: ENV['DOMAIN'] + 'members/index',
       title: "全社のFFS診断結果はこちら",
       fields: fields
     ]
