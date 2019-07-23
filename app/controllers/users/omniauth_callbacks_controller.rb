@@ -1,10 +1,12 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :authenticate_user!
   def google
+    # ログイン制御は、session[:login] 内の Email 有無だけとする
     session[:login] = request.env['omniauth.auth'].info.email
     redirect_to members_index_path and return
   end
 
+  # 失敗時のエラー表記とリダイレクト制御するために上書きしてます
   def failure
     if failure_message == 'Invalid hosted domain'
       flash[:warning] = ENV['GOOGLE_CLIENT_DOMAIN'] + 'でログインしてください'
@@ -13,18 +15,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
     redirect_to root_path
   end
-
-  # def google
-  #   redirect_to root_path and return
-  #   @user = User.find_for_google(request.env['omniauth.auth'])
-  #   if @user.persisted?
-  #     flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: 'Google'
-  #     sign_in_and_redirect @user, event: :authentication
-  #   else
-  #     session['devise.google_data'] = request.env['omniauth.auth']
-  #     redirect_to new_user_registration_url, alert: @user.errors.full_messages.join("\n")
-  #   end
-  # end
 
   def callback_url
     full_host + script_name + callback_path
