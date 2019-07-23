@@ -12,22 +12,27 @@ class Team < ApplicationRecord
   end
 
   def a_avg
+    return 0 if member_ffs.blank?
     member_ffs.pluck(:a).sum / member_ffs.pluck(:a).count
   end
 
   def b_avg
+    return 0 if member_ffs.blank?
     member_ffs.pluck(:b).sum / member_ffs.pluck(:b).count
   end
 
   def c_avg
+    return 0 if member_ffs.blank?
     member_ffs.pluck(:c).sum / member_ffs.pluck(:c).count
   end
 
   def d_avg
+    return 0 if member_ffs.blank?
     member_ffs.pluck(:d).sum / member_ffs.pluck(:d).count
   end
 
   def e_avg
+    return 0 if member_ffs.blank?
     member_ffs.pluck(:e).sum / member_ffs.pluck(:e).count
   end
 
@@ -36,6 +41,7 @@ class Team < ApplicationRecord
     members.each do |m|
       stresses << m.member_stresses.last.point
     end
+    return 0 if stresses.blank?
     stresses.sum / stresses.count
   end
 end
