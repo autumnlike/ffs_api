@@ -20,6 +20,11 @@ gem 'haml-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
+# 認証
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
 # Grape for API
 gem 'grape'
 gem 'grape-entity'

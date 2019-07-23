@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   mount Base::API => '/'
 
-  root 'members#index'
+  root 'home#index'
+
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  get '/users/destroy' => 'users#destroy'
 
   # メンバー
   get '/members/index' => 'members#index'
