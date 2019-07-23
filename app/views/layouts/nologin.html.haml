@@ -21,15 +21,5 @@
           = link_to 'ログアウト', users_destroy_path
     %div.container-fluid
       %div.row
-        %nav.col-sm-3.col-md-2.hidden-xs-down.bg-faded.sidebar
-          %ul.nav.nav-pills.flex-column
-            %li.nav-item
-              =link_to 'メンバー一覧', members_index_path, { class: 'nav-link' }
-              =link_to 'チーム一覧', teams_path, { class: 'nav-link' }
-              =link_to 'FFSについて', infos_index_path, { class: 'nav-link' }
-          %hr
         %main.col-sm-9.offset-sm-3.col-md-10.offset-md-2.pt-4
-          -flash.each do |type, msg|
-            %div{class: "alert alert-#{type}"}= msg
-
           = yield

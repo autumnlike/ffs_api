@@ -24,6 +24,15 @@ h5 {
 .navbar {
   border-radius: 0;
   position: fixed;
+  .login {
+    color: #fff;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    a:link, a:visited {
+      color: #fff;
+    }
+  }
 }
 
 .table {
