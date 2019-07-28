@@ -1,8 +1,8 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :authenticate_user!
   def google
-    # ログイン制御は、session[:login] 内の Email 有無だけとする
-    session[:login] = request.env['omniauth.auth'].info.email
+    # ログイン制御は、session[:login] 内にUserInfoの有無とする
+    session[:login] = request.env['omniauth.auth'].info
     redirect_to members_index_path and return
   end
 
