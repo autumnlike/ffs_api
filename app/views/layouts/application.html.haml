@@ -25,8 +25,17 @@
         %span.navbar-toggler-icon
       - if session['login']
         %div.login
-          = session['login']
-          = link_to 'ログアウト', users_destroy_path
+          %ul.navbar-nav
+            %li.nav-item.dropdown
+              %a.nav-link.dropdown-toggle#navbarDropdownMenuLink{"data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false"} 
+                %span
+                  %img{src: session['login']['image']}
+              %div.dropdown-menu{"aria-labelledby": "navbarDropdownMenuLink"}
+                %span
+                  %strong= session[:login]['email']
+                  でログイン中
+                %div.dropdown-divider
+                = link_to 'ログアウト', users_destroy_path, {class: "dropdown-item"}
     %div.container-fluid
       %div.row
         %main
