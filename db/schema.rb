@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_20_194729) do
+ActiveRecord::Schema.define(version: 2019_08_11_150112) do
 
   create_table "ffs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "FFS各因子詳細", force: :cascade do |t|
     t.string "label", comment: "記号"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 2019_07_20_194729) do
     t.string "short_description", comment: "91タイプ分類が2因子以上の場合の短めの説明"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "managers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_managers_on_email", unique: true
   end
 
   create_table "member_ffs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
