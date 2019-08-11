@@ -3,6 +3,8 @@
 - use_remove = defined?(use_remove) ? use_remove : false;
 - # ストレス表示
 - use_stress = defined?(use_stress) ? use_stress : false;
+- # 平均 team 必須
+- use_average = defined?(use_average) ? use_average : false;
 
 %table.table.table-hover
   %thead
@@ -17,6 +19,7 @@
       %th= link_to "4 Type", infos_index_path(anchor: "4_type")
       - if use_stress
         %th ストレス
+        %th ストレス履歴
       - if use_remove
         %th 削除
   %tbody
@@ -34,6 +37,10 @@
         %td= member.member_ffs['91_type']
         %td= member.member_ffs['4_type']
         - if use_stress
+
+          %td
+            %span.main= member.member_stresses.first.point
+            %span.sub= '[ ' + member.member_stresses.first.diagnostic_at.strftime('%Y年%m月') + ' ]'
           %td
             %ul.stresses
               - member.member_stresses.each do |stress|
@@ -44,3 +51,18 @@
           %td
             =link_to '/team_members/' + String(member.team_member(@team.id).id) + '/delete', onclick: "return confirm('削除して良いですか？')" do
               %span.glyphicon.glyphicon-trash{"aria-hidden": "true"}
+    - if use_average
+      %tr
+        %td 平均
+        %td= team.a_avg
+        %td= team.b_avg
+        %td= team.c_avg
+        %td= team.d_avg
+        %td= team.e_avg
+        %td
+        %td
+        - if @is_manager
+          %td= team.stress_avg
+          %td
+        - if use_remove
+          %td
