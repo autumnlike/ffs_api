@@ -1,0 +1,5 @@
+%td
+  -if type_name.include?(name)
+    %strong{class: type_name.start_with?(name) ? 'mark text-primary' : nil}= point
+  -else
+    = point

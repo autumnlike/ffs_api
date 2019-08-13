@@ -29,23 +29,25 @@
           = member.name
           %br
           %span.sub= (member.email)
-        %td= member.member_ffs.a
-        %td= member.member_ffs.b
-        %td= member.member_ffs.c
-        %td= member.member_ffs.d
-        %td= member.member_ffs.e
+        =render 'members/ffs_point', name: 'A', type_name: member.member_ffs["91_type"], point: member.member_ffs.a
+        =render 'members/ffs_point', name: 'B', type_name: member.member_ffs["91_type"], point: member.member_ffs.b
+        =render 'members/ffs_point', name: 'C', type_name: member.member_ffs["91_type"], point: member.member_ffs.c
+        =render 'members/ffs_point', name: 'D', type_name: member.member_ffs["91_type"], point: member.member_ffs.d
+        =render 'members/ffs_point', name: 'E', type_name: member.member_ffs["91_type"], point: member.member_ffs.e
         %td= member.member_ffs['91_type']
         %td= member.member_ffs['4_type']
         - if use_stress
 
           %td
-            %span.main= member.member_stresses.first.point
+            %span.main
+              =render 'members/ffs_stress_point', point: member.member_stresses.first.point
             %span.sub= '[ ' + member.member_stresses.first.diagnostic_at.strftime('%Y年%m月') + ' ]'
           %td
             %ul.stresses
               - member.member_stresses.each do |stress|
                 %li
-                  %span.main= stress.point
+                  %span.main
+                    =render 'members/ffs_stress_point', point: stress.point
                   %span.sub= '[ ' + stress.diagnostic_at.strftime('%Y年%m月') + ' ]'
         - if use_remove
           %td
