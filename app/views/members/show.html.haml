@@ -52,11 +52,17 @@
   %div.ml-5.mr-5
     %canvas#stressLineChart{width: "400", height: "400"}
 
-  - data = []
-  - labels = []
+  - # 1つしかデータがない場合にグラフの左にひっつくのを避けるために開始と終了に空値を入れる
+  - data = [nil]
+  - labels = ['']
+
   - @member.member_stresses.each do |stress|
     - data << [stress.point]
     - labels << [stress.diagnostic_at]
+
+  - # 1つしかデータがない場合にグラフの左にひっつくのを避けるために開始と終了に空値を入れる
+  - data << nil
+  - labels << ''
 
   :javascript
     $(function() {
