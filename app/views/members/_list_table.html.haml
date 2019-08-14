@@ -29,11 +29,16 @@
           = member.name
           %br
           %span.sub= (member.email)
-        =render 'members/ffs_point', name: 'A', type_name: member.member_ffs["91_type"], point: member.member_ffs.a
-        =render 'members/ffs_point', name: 'B', type_name: member.member_ffs["91_type"], point: member.member_ffs.b
-        =render 'members/ffs_point', name: 'C', type_name: member.member_ffs["91_type"], point: member.member_ffs.c
-        =render 'members/ffs_point', name: 'D', type_name: member.member_ffs["91_type"], point: member.member_ffs.d
-        =render 'members/ffs_point', name: 'E', type_name: member.member_ffs["91_type"], point: member.member_ffs.e
+        %td
+          =render 'members/ffs_factor_point', name: 'A', type_name: member.member_ffs["91_type"], point: member.member_ffs.a
+        %td
+          =render 'members/ffs_factor_point', name: 'B', type_name: member.member_ffs["91_type"], point: member.member_ffs.b
+        %td
+          =render 'members/ffs_factor_point', name: 'C', type_name: member.member_ffs["91_type"], point: member.member_ffs.c
+        %td
+          =render 'members/ffs_factor_point', name: 'D', type_name: member.member_ffs["91_type"], point: member.member_ffs.d
+        %td
+          =render 'members/ffs_factor_point', name: 'E', type_name: member.member_ffs["91_type"], point: member.member_ffs.e
         %td= member.member_ffs['91_type']
         %td= member.member_ffs['4_type']
         - if use_stress
