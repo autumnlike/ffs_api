@@ -1,0 +1,98 @@
+%h1= @member.name + ' - (' + @member.member_ffs['91_type'] + ')'
+
+%h2 因子
+
+%div.ml-5.mr-5
+  %canvas#memberLineChart{width: "400", height: "400"}
+
+:javascript
+  $(function() {
+    var datasets = [{
+      label: "#{@member.name}\(#{@member.member_ffs['91_type']}\)",
+      data: [#{@member.member_ffs.a}, #{@member.member_ffs.b}, #{@member.member_ffs.c}, #{@member.member_ffs.d}, #{@member.member_ffs.e}],
+      lineTension: 0,
+      fill: false,
+      backgroundColor: '#a6cee3',
+      borderColor: '#a6cee3'
+    }];
+    var labels = ['A 凝縮性', 'B 受容性', 'C 弁別性', 'D 拡散性', 'E 保全性'];
+    var data = {
+      labels: labels,
+      datasets: datasets,
+    };
+    var ctx = document.getElementById("memberLineChart").getContext("2d");
+    var options = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            min: 0,
+            max: 20
+          }
+        }]
+      },
+      responsive: true,
+      maintainAspectRatio: false
+    };
+    var lineChart = new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: options
+    });
+    lineChart.canvas.parentNode.style.height = '400px';
+  });
+
+%h2 因子概要
+
+%p.mt-5.ml-5.mr-5= @member.member_ffs.description
+
+-if @is_manager
+  %h2 ストレス
+
+  %div.ml-5.mr-5
+    %canvas#stressLineChart{width: "400", height: "400"}
+
+  - data = []
+  - labels = []
+  - @member.member_stresses.each do |stress|
+    - data << [stress.point]
+    - labels << [stress.diagnostic_at]
+
+  :javascript
+    $(function() {
+      var datasets = [{
+        label: "ストレス",
+        data: #{data.to_json.html_safe},
+        lineTension: 0,
+        fill: false,
+        backgroundColor: '#a6cee3',
+        borderColor: '#a6cee3'
+      }];
+      var labels = #{labels.to_json.html_safe};
+      var data = {
+        labels: labels,
+        datasets: datasets,
+      };
+      var ctx = document.getElementById("stressLineChart").getContext("2d");
+      var options = {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              min: 0,
+              max: 20
+            }
+          }]
+        },
+        responsive: true,
+        maintainAspectRatio: false
+      };
+      var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: options
+      });
+      lineChart.canvas.parentNode.style.height = '400px';
+    });
+
+%h2 ストレス要因 (coming soon)
