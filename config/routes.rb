@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/users/destroy' => 'users#destroy'
 
   # メンバー
-  get '/members/index' => 'members#index'
+  resources :members
 
   # チーム
   resources :teams

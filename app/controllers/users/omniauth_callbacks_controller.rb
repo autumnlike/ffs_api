@@ -3,7 +3,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def google
     # ログイン制御は、session[:login] 内にUserInfoの有無とする
     session[:login] = request.env['omniauth.auth'].info
-    redirect_to members_index_path and return
+    redirect_to members_path and return
   end
 
   # 失敗時のエラー表記とリダイレクト制御するために上書きしてます
