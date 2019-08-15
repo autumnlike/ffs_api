@@ -101,4 +101,11 @@
       lineChart.canvas.parentNode.style.height = '400px';
     });
 
-%h2 ストレス要因 (coming soon)
+%h2 ストレス要因
+%ul
+  -@member.member_ffs.ffs.each do |ffs|
+    %li
+      %strong= ffs.name
+      %ul
+        - JSON.parse(ffs.stresser).each do |s|
+          %li= s

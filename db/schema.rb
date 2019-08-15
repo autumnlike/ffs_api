@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_11_150112) do
+ActiveRecord::Schema.define(version: 2019_08_15_135100) do
 
   create_table "ffs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "FFS各因子詳細", force: :cascade do |t|
     t.string "label", comment: "記号"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_150112) do
     t.string "overview", comment: "詳細"
     t.string "long_description", comment: "91タイプ分類が1因子だけの場合の長めの説明"
     t.string "short_description", comment: "91タイプ分類が2因子以上の場合の短めの説明"
+    t.string "stresser", comment: "ストレス要因"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

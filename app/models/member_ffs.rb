@@ -14,6 +14,15 @@ class MemberFFS < ApplicationRecord
   validates :'4_type', inclusion: { in: %w(AN TG LM ML) }
   validates :'91_type', format: { with: /[ABCDE]/ }
 
+  def ffs
+    types = self[:"91_type"].split('')
+    ffs = []
+    types.each_with_index do |t, index|
+      ffs << FFS.find_by(label: t)
+    end
+    ffs
+  end
+
   def description
     # 91type を因子ごとに分割
     types = self[:"91_type"].split('')
