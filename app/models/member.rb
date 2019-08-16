@@ -2,7 +2,7 @@ class Member < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
   has_one :member_ffs, class_name: "MemberFFS"
-  has_many :member_stresses, -> { order('diagnostic_at DESC') }
+  has_many :member_stresses
 
   def team_member(team_id)
     TeamMember.find_by member_id: id, team_id: team_id

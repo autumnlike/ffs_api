@@ -56,7 +56,7 @@
   - data = [nil]
   - labels = ['']
 
-  - @member.member_stresses.each do |stress|
+  - @member.member_stresses.order(diagnostic_at: "ASC").each do |stress|
     - data << [stress.point]
     - labels << [stress.diagnostic_at]
 

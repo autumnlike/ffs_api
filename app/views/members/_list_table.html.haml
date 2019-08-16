@@ -45,8 +45,8 @@
 
           %td
             %span.main
-              =render 'members/ffs_stress_point', point: member.member_stresses.first.point
-            %span.sub= '[ ' + member.member_stresses.first.diagnostic_at.strftime('%Y年%m月') + ' ]'
+              =render 'members/ffs_stress_point', point: member.member_stresses.last.point
+            %span.sub= '[ ' + member.member_stresses.last.diagnostic_at.strftime('%Y年%m月') + ' ]'
           %td
             %ul.stresses
               - member.member_stresses.each do |stress|
