@@ -4,12 +4,12 @@ class ApplicationController < ActionController::Base
 
   # ログイン制御は、session[:login] 内にUserInfoの有無とする
   def authenticate_user!
-    redirect_to root_path and return if !session[:login]
+    redirect_to root_path and return if !defined? session[:login].email
   end
 
   # ログイン者がマネージャかどうか
   def set_manager
-    return if !defined? session[:login]
+    return if !defined? session[:login].email
     email = session[:login].email
     @is_manager = !!Manager.find_by(email: email)
   end
