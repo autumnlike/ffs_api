@@ -9,6 +9,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
 
     = csrf_meta_tags
+    = analytics_init if Rails.env.production?
   %body
     %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
       %a.navbar-brand{href: '/' }
