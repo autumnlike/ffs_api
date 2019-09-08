@@ -27,8 +27,8 @@
       - if session['login']
         %div.login
           %ul.navbar-nav
-            %li.nav-item.dropdown
-              %a.nav-link.dropdown-toggle#navbarDropdownMenuLink{"data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false"} 
+            %li.nav-item.dropdown.login-user
+              %a.nav-link.dropdown-toggle#navbarDropdownMenuLink{"data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false"}
                 %span
                   %img{src: session['login']['image']}
               %div.dropdown-menu{"aria-labelledby": "navbarDropdownMenuLink"}
@@ -37,6 +37,15 @@
                   でログイン中
                 %div.dropdown-divider
                 = link_to 'ログアウト', users_destroy_path, {class: "dropdown-item"}
+            %li.nav-item.dropdown.help
+              %a.nav-link.dropdown-toggle.glyphicon.glyphicon-question-sign#navbarDropdownMenuLink{"data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false"}
+              %div.dropdown-menu{"aria-labelledby": "navbarDropdownMenuLink"}
+                %a.dropdown-item
+                  =link_to '質問する', 'https://docs.google.com/forms/d/e/1FAIpQLSe0em0qR0wT6bQ8JyusIUNgXrnZRZWox7BbDepvovLACsICYQ/viewform'
+                %a.dropdown-item
+                  =link_to '相談する', 'https://docs.google.com/forms/d/e/1FAIpQLSf1OgZJWvDRg-mxl92316CyNWrRw5Mv56qGBuEeiYheZEQ8Bw/viewform'
+                %a.dropdown-item
+                  =link_to '不具合・要望', 'https://docs.google.com/forms/d/e/1FAIpQLSeDyg47_a485teyVHQgM6XlpN0bD99KUfiLAOJKbo4XeGaIZg/viewform'
     %div.container-fluid
       %div.row
         %main

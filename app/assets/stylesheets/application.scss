@@ -32,12 +32,23 @@ h5 {
       border-radius: 50%;
       width: 30px;
     }
-    .dropdown-menu {
-      left: -190px;
-      font-size: 10%;
-      min-width: 230px;
-      span {
-        padding: .25rem 1.5rem;
+    li.login-user {
+      .dropdown-menu {
+        left: -190px;
+        font-size: 10%;
+        min-width: 230px;
+        span {
+          padding: .25rem 1.5rem;
+        }
+      }
+    }
+    li.help {
+      .dropdown-menu {
+        left: -80px;
+        min-width: 120px;
+        a {
+          padding: 5px 10px;
+        }
       }
     }
   }
