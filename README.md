@@ -1,14 +1,17 @@
 # FFS API
 
 FFSを活用する便利な機能のAPI提供ツール
-しかし、まだ開発途中なため、Slack との連携ツールにとどまっているのが現状。
+主に、以下2つの機能があります。
+
+- Slackのスラッシュコマンド機能
+- Web機能
 
 ## 環境構築
 
 1. Rails の通常の構築
 ```
 $ git clone git@github.com:autumnlike/ffs_api.git
-$ bundle exec --path=/PATH/TO
+$ bundle install --path=/PATH/TO
 
 # DB
 $ ./bin/rails db:create
@@ -20,21 +23,22 @@ $ cp dotenv.sample .env
 $ vi .env # 適切な値に
 ```
 
+## Ethosからのデータインポート
+
+1. 個人管理 > 検索・編集 > ユーザー全件を表示
+1. 「検索結果CSVダウンロード」 > UTF-8
+
+でダウンロードできます。
+
+## DBにインポート
+
+1. ダウンロードしたファイルを `RAILS_ROOT/tmp` 配下に設置
+1. インポートコマンドを実行
+```
+$ cd RAILS_ROOT
+$ ./bin/rake import_user_ffs:by_ethos
+```
+
 ## API
 
 APIはすべて [apiary](https://sakiyoshi.docs.apiary.io/#reference/0/0) にて管理しているので、こちらを参照・更新してください。
-
-## 運用環境
-
-[Heroku](https://dashboard.heroku.com/apps) にて運用中。
-
-```
-# デプロイ
-$ git push heroku master
-# 起動
-$ heroku ps:scale web=1
-# 停止
-$ heroku ps:scale web=0
-# ログ
-$ heroku logs -t
-```
