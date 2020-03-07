@@ -1,8 +1,16 @@
-# SLACK
+# Service Domain
+DOMAIN=''
+
+# SLACK API TOKEN
 SLACK_TOKEN=''
 
+# Api Token
 API_TOKEN=''
 
+# Google
 GOOGLE_CLIENT_ID=''
 GOOGLE_CLIENT_SECRET=''
 GOOGLE_CLIENT_DOMAIN=''
+
+# Google Analytics
+GA_TRACKER=''
