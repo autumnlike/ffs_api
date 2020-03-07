@@ -23,7 +23,6 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params.permit(:name))
 
     if @team.save
-      # TODO 何故か flash がViewに反映されない
       redirect_to teams_path, flash: {success: 'チームを作成しました'}
     else
       @teams = Team.all

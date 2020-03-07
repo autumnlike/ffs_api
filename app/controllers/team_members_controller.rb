@@ -8,13 +8,9 @@ class TeamMembersController < ApplicationController
     @team_member = TeamMember.new(team_member_params.permit(:team_id, :member_id))
 
     if @team_member.save
-      # TODO 何故か flash がViewに反映されない
-      redirect_to team_path(id: @team_member.team_id), flash: {success: 'チームを作成しました'}
+      redirect_to team_path(id: @team_member.team_id), flash: {success: 'メンバーを追加しました'}
     else
-      @team_member = Team.all
-      @team = Team.find @team_member.team_id
-      render template: 'teams/index'
-      #render json: @team.errors, status: :unprocessable_entity
+      redirect_to team_path(id: @team_member.team_id), flash: {danger: 'メンバー追加を失敗しました'}
     end
   end
 
