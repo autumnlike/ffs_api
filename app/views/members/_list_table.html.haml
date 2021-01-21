@@ -44,16 +44,18 @@
         - if use_stress
 
           %td
-            %span.main
-              =render 'members/ffs_stress_point', point: member.member_stresses.last.point
-            %span.sub= '[ ' + member.member_stresses.last.diagnostic_at.strftime('%Y年%m月') + ' ]'
+            - if member.member_stresses.last.present?
+              %span.main
+                =render 'members/ffs_stress_point', point: member.member_stresses.last.point
+              %span.sub= '[ ' + member.member_stresses.last.diagnostic_at.strftime('%Y年%m月') + ' ]'
           %td
             %ul.stresses
-              - member.member_stresses.each do |stress|
-                %li
-                  %span.main
-                    =render 'members/ffs_stress_point', point: stress.point
-                  %span.sub= '[ ' + stress.diagnostic_at.strftime('%Y年%m月') + ' ]'
+              - if member.member_stresses.last.present?
+                - member.member_stresses.each do |stress|
+                  %li
+                    %span.main
+                      =render 'members/ffs_stress_point', point: stress.point
+                    %span.sub= '[ ' + stress.diagnostic_at.strftime('%Y年%m月') + ' ]'
         - if use_remove
           %td
             =link_to '/team_members/' + String(member.team_member(@team.id).id) + '/delete', onclick: "return confirm('削除して良いですか？')" do
