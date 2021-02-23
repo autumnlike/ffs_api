@@ -49,6 +49,13 @@ class TeamsController < ApplicationController
     redirect_to teams_path
   end
 
+  # POST /teams/upload
+  def upload
+    # TODO バリデーション
+    # ファイルからインポート
+    EthosImporterService::import team_params['name'].tempfile
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team
