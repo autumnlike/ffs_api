@@ -10,6 +10,8 @@ class EthosImporterService
       CSV.foreach(file_name, headers: true, encoding: encoding) do | data |
         row += 1
         data = shaping data
+        # FFS受信してないデータが含まれるので無視する
+        next if data['A因子'].nil?
         member = Member.create_by_ethos! data
         member_ffs = MemberFFS.create_by_ethos! data, member.id
         MemberStress.create_by_ethos! data, member.id
