@@ -1,0 +1,6 @@
+%h1 Ethosからインポート
+
+= form_with url: "/admin/import", class: "form-inline mb-3", local: true do |form|
+  %div.form-group.mr-2
+    = form.file_field :name, class: "form-control", placeholder: "ファイル"
+  = form.submit "一括インポート",  class: "btn btn-primary"

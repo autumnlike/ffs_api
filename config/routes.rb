@@ -12,11 +12,14 @@ Rails.application.routes.draw do
   # チーム
   resources :teams
   get '/teams/:id/delete' => 'teams#destroy'
-  post '/teams/upload' => 'teams#upload'
 
   post '/team_members' => 'team_members#create'
   get '/team_members/:id/delete' => 'team_members#destroy'
 
   # 説明系
   get '/infos/index' => 'infos#index'
+
+  # 管理
+  get '/admin/import_form' => 'admin#import_form'
+  post '/admin/import' => 'admin#import'
 end
